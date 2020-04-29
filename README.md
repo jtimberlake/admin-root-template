@@ -11,7 +11,7 @@ This is a Guild admin-root starter project to get you started with creating an g
 5. Set up a `aws-jumpcloud` profile that is pointed to the AWS dev enviroment if you don't already have one. (See [aws-jumpcloud](https://github.com/GuildEducationInc/aws-jumpcloud) for details on this step)
 6. Go to the generated `Makefile` and look for the `AWS_DEV_PROFILE` variable.
 7. Fill in the `AWS_DEV_PROFILE` variable with the name of the profile from step `5`.
-8. Run `make subapp` to deploy to AWS
+8. Run `make root-app` to deploy to AWS
 9. You're root is all setup and ready to be deployed!
 
 It will automatically pull in any sub-apps that are created with the sub-app template.
