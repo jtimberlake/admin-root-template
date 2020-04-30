@@ -8,7 +8,12 @@ const crypto = require('crypto');
 const bundlePath = path.join(__dirname, '../bundles');
 const templatePath = path.join(__dirname, '../templates');
 
-
+/**
+ * Make the file name a valid JS variable
+ */
+const normalizeFileName = (fileName) => {
+  return fileName.replace(/-/g, '_')
+}
 async function walk(dir, fileList = []) {
   const files = await fs.readdir(dir)
   for (const file of files) {
@@ -40,7 +45,7 @@ walk(bundlePath).then(files => {
   const view = {
     bundles: bundles.map(bundle => {
       return {
-        name: `${path.parse(bundle).name}_${hash(bundle)}`,
+        name: `${normalizeFileName(path.parse(bundle).name)}_${hash(bundle)}`,
         path: bundle
       }
     }),
