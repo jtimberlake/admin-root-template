@@ -1,9 +1,5 @@
 import * as React from 'react';
-import { NavBar } from '@guildeducationinc/recess/components/NavBar';
-import { Brand } from '@guildeducationinc/recess/components/NavBar/Brand';
-import { NavbarTabs  } from '@guildeducationinc/recess/components/NavBar/NavbarTabs';
-import { CoBrand } from "@guildeducationinc/recess/components/CoBrand";
-import { TabLink } from "@guildeducationinc/recess/components/TabNavigation/TabLink";
+import { TabLink, CoBrand, NavBarTabs , Brand, NavBar} from "@guildeducationinc/recess/components/Navigation";
 import { Link } from 'react-router-dom';
 import apps from '../apps.js';
 import { getLabel, getRoute } from '@guildeducationinc/guild-admin-utils';
@@ -15,7 +11,7 @@ export const Navigation = () => {
         <Brand href='/'>
       <CoBrand />
     </Brand>
-      <NavbarTabs >
+      <NavBarTabs >
         {
           apps.map(App => {
             const label = getLabel(App);
@@ -26,7 +22,7 @@ export const Navigation = () => {
           }
           )
         }
-      </NavbarTabs>
+      </NavBarTabs>
     </NavBar>
   )
 }
