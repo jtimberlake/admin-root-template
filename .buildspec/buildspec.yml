@@ -1,0 +1,25 @@
+version: 0.2
+env:
+  secrets-manager:
+    NPM_TOKEN:  /guild-admin/npm-info:NpmToken
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+      nodejs: 10
+  pre_build:
+    commands:
+      - echo Installing NPM packages...
+      - yarn install
+      - echo Syncing Admin Bundles...
+      - "aws s3 sync s3://$BUNDLE_BUCKET/$ROOT_APP ./bundles"
+  build:
+    commands:
+      - echo Building imported sub app templates...
+      - yarn build:templates
+      - echo Bundling Application
+      - yarn build:aws
+artifacts:
+  files:
+    - '**/*'
+  base-directory: ./public
