@@ -4,7 +4,7 @@ import { Navigation } from './layout/Navigation';
 import { Main } from './layout/Main';
 import SubApp from './SubApp'; // This file is auto-generated
 import { createBrowserHistory } from 'history';
-const history = createBrowserHistory();
+const history = createBrowserHistory({ basename: window.location.pathname });
 
 const App: React.SFC<any> = () => {
     return (

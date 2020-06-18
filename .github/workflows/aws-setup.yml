@@ -1,0 +1,80 @@
+name: Setup and Deploy AWS Resources
+on: 
+  push:
+    branches:
+      - master
+      - staging
+      - production
+jobs:
+  development_aws:
+    name: Deploy root app pipeline to development AWS env
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set Repo Name
+        run: echo "::set-env name=REPO_NAME::$(basename $GITHUB_REPOSITORY)"
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.DEVOPS_DEV_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.DEVOPS_DEV_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+      
+      - name: Deploy to AWS CloudFormation
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: "guild-admin-root-${{ env.REPO_NAME }}-pipeline"
+          template: cfn-codepipeline.yaml
+          capabilities: CAPABILITY_IAM
+          parameter-overrides: "GithubRepo=${{ env.REPO_NAME }},GithubBranch=master"
+  staging_aws:
+    name: Deploy root app pipeline to development AWS env
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/staging'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set Repo Name
+        run: echo "::set-env name=REPO_NAME::$(basename $GITHUB_REPOSITORY)"
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.DEVOPS_STAGING_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.DEVOPS_STAGING_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+      
+      - name: Deploy to AWS CloudFormation
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: "guild-admin-root-${{ env.REPO_NAME }}-pipeline"
+          template: cfn-codepipeline.yaml
+          capabilities: CAPABILITY_IAM
+          parameter-overrides: "GithubRepo=${{ env.REPO_NAME }},GithubBranch=staging"
+  # production_aws:
+  #   name: Deploy root app pipeline to development AWS env
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/production'
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #     - name: Set Repo Name
+  #       run: echo "::set-env name=REPO_NAME::$(basename $GITHUB_REPOSITORY)"
+
+  #     - name: Configure AWS Credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.DEVOPS_DEV_AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.DEVOPS_DEV_AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: us-west-2
+      
+  #     - name: Deploy to AWS CloudFormation
+  #       uses: aws-actions/aws-cloudformation-github-deploy@v1
+  #       with:
+  #         name: "guild-admin-root-${{ env.REPO_NAME }}-pipeline"
+  #         template: cfn-codepipeline.yaml
+  #         capabilities: CAPABILITY_IAM
+  #         parameter-overrides: "GithubRepo=${{ env.REPO_NAME }},GithubBranch=production"

@@ -1,0 +1,15 @@
+import * as React from 'react';
+{{#bundles}}
+import {{name}} from '{{{path}}}';
+{{/bundles}}
+{{#css}}
+import '{{{.}}}';
+{{/css}}
+
+const subApps = [
+  {{#bundles}}
+  {{name}},
+  {{/bundles}}
+];
+
+export default subApps;

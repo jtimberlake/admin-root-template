@@ -1,11 +1,27 @@
-require('dotenv').config();
+
 const webpackMerge = require('webpack-merge');
 const common = require('./webpack/webpack.common');
-const envs = {
-  development: 'dev',
-  production: 'prod',
-  aws: 'aws'
-};
-const env = envs[process.env.NODE_ENV || 'development'];
-const envConfig = require(`./webpack/webpack.${env}.js`);
-module.exports = webpackMerge(common, envConfig);
+/**
+ * process.env.NODE_ENV should be one of the following
+ * 1. dev
+ * 2. staging
+ * 3. prod
+ * 
+ */
+
+const webpackEnv = (environment) => {
+  const webpackEnvMap = {
+    dev: 'dev',
+    staging: 'dev',
+    prod: 'prod'
+  }
+
+  return webpackEnvMap[environment]
+
+}
+
+const env = process.env.NODE_ENV || 'dev'
+
+const envConfig = require(`./webpack/webpack.${webpackEnvMap(env)}.js`);
+
+module.exports = webpackMerge(common(env), envConfig)
