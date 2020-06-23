@@ -13,7 +13,6 @@ Parameters:
   SubDomain:
     Type: String
     Description: "SubDomain of URL that will serve this application. For example, in the case admin.guildeducation.com, admin is the SubDomain"
-    Default: guild-admin-root-test
   GithubBranch:
     Type: String
     Default: master
