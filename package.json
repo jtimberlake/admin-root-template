@@ -10,7 +10,7 @@
   "scripts": {
     "build:aws": "yarn build:templates && build",
     "build": "cross-env NODE_ENV=dev webpack",
-    "build:templates": "node ./build-scripts/bundle-subapps/index.js",
+    "build:templates": "node ./scripts/bundle-subapps/index.js",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "heroku-postbuild": "yarn build",
