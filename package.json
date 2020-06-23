@@ -1,9 +1,9 @@
 {
-  "name": "guild-admin-root-pr-example",
+  "name": "guild-admin-admin-templte",
   "author": "Guild Education Inc",
   "version": "1.0.0",
   "license": "UNLISCENSED",
-  "description": "Root admin application -- guild-admin-root-pr-example",
+  "description": "A template repo for creating a new guild admin root application",
   "engines": {
     "yarn": "^1.5"
   },
