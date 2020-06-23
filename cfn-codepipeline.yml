@@ -9,13 +9,11 @@ Parameters:
   GithubRepo:
     Type: String
     Description: "Github repo name"
-    Default: guild-admin-root-e2e-test
   SubDomain:
     Type: String
     Description: "SubDomain of URL that will serve this application. For example, in the case admin.guildeducation.com, admin is the SubDomain"
   GithubBranch:
     Type: String
-    Default: master
   CodePipelineRole:
     Type: AWS::SSM::Parameter::Value<String>
     Default: /IAM/Role/guild-admin-platform/root-admin-codepipeline-role/Arn

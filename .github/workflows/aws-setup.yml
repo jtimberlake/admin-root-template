@@ -57,4 +57,4 @@ jobs:
             --stack-name "guild-admin-root-${{ env.REPO_NAME }}" \
             --capabilities CAPABILITY_IAM \
             --region us-west-2 \
-            --parameter-overrides GithubRepo=${{ env.REPO_NAME }} GithubBranch=master Environment=staging 
+            --parameter-overrides GithubRepo=${{ env.REPO_NAME }} GithubBranch=staging Environment=staging 

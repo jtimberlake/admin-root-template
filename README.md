@@ -8,13 +8,8 @@ This is a Guild admin-root starter project to get you started with creating an g
 2. Once the repository is created, clone it to your local development enviroment.
 3. Run `npx -p @guildeducationinc/guild-admin-utils create-guild-admin root` and follw the instructions
 4. Run `yarn install`
-5. Set up a `aws-jumpcloud` profile that is pointed to the AWS dev enviroment if you don't already have one. (See [aws-jumpcloud](https://github.com/GuildEducationInc/aws-jumpcloud) for details on this step)
-6. Go to the generated `Makefile` and look for the `AWS_DEV_PROFILE` variable.
-7. Fill in the `AWS_DEV_PROFILE` variable with the name of the profile from step `5`.
-8. Run `make root-app` to deploy to AWS
-9. You're root is all setup and ready to be deployed!
-
-It will automatically pull in any sub-apps that are created with the sub-app template.
+5. Push your branch to github
+9. You're root is all setup. It will be deployed into each env when the approoriate branch is pushed to github (`master`, `staging`, `production`)
 
 ## What is this?
 This repo serves as a template for the root application of a new guild admin instance.
