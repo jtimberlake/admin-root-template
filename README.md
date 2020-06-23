@@ -6,11 +6,13 @@ This is a Guild admin-root starter project to get you started with creating an g
 ---
 1. [Create a new github repo](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) from this repository template.
 2. Once the repository is created, clone it to your local development enviroment.
-3. Run `npx -p @guildeducationinc/guild-admin-utils create-guild-admin root` and follw the instructions
-4. Run `yarn install`
-5. Configure your `.env` files for each environment
+3. Run `yarn install`
+4. Configure your `.env` files for each environment
+5. In the `cfn-codepipeline.yml` file, edit the `SubDomain` parameter to reflect the subdomain that this app is to be hosted at.
 6. Push your branch to github
-7. You're root is all setup. It will be deployed into each env when the approoriate branch is pushed to github (`master`, `staging`, `production`)
+
+
+ You're root is all setup. It will be deployed into each env when the approoriate branch is pushed to github (`master`, `staging`, `production`)
 
 ## What is this?
 This repo serves as a template for the root application of a new guild admin instance.
