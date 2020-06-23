@@ -22,6 +22,6 @@ const webpackEnv = (environment) => {
 
 const env = process.env.NODE_ENV || 'dev'
 
-const envConfig = require(`./webpack/webpack.${webpackEnvMap(env)}.js`);
+const envConfig = require(`./webpack/webpack.${webpackEnv(env)}.js`);
 
 module.exports = webpackMerge(common(env), envConfig)
