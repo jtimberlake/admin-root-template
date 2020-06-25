@@ -2,13 +2,13 @@ import * as React from 'react';
 import { TabLink, CoBrand, NavBarTabs , Brand, NavBar, UserActions } from "@guildeducationinc/recess/components/Navigation";
 import { Link } from 'react-router-dom';
 import apps from '../apps.js';
-import { getLabel, getRoute } from '@guildeducationinc/guild-admin-utils';
+import { getLabel, getRoute, getRoles } from '@guildeducationinc/guild-admin-utils';
 import Button from '@guildeducationinc/recess/components/Button';
 import { AuthContext } from '@guildeducationinc/guild-auth';
 
 export const Navigation = () => {
   const authContext = React.useContext(AuthContext)
-
+  const role = authContext.user.role;
   return (
     <NavBar >
         <Brand href='/'>
@@ -19,8 +19,11 @@ export const Navigation = () => {
           apps.map(App => {
             const label = getLabel(App);
             const route = getRoute(App);
+            const allowedRoles = getRoles(App)
             return (
-              <TabLink  Component={Link} key={label} to={route}>{ label }</TabLink>
+              allowedRoles.includes(role) ?
+                <TabLink  Component={Link} key={label} to={route}>{ label }</TabLink>
+                : null
             )
           }
           )
