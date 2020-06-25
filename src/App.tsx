@@ -6,6 +6,12 @@ import SubApp from './SubApp'; // This file is auto-generated
 import { AuthProvider } from '@guildeducationinc/guild-auth';
 
 const App: React.SFC<any> = () => {
+    console.log(
+      window.location.origin,
+      process.env.AUTH0_AUDIENCE,
+      process.env.AUTH0_DOMAIN,
+      process.env.AUTH0_CLIENT_ID
+      )
     return (
       <AuthProvider
         audience={process.env.AUTH0_AUDIENCE}

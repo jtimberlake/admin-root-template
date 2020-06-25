@@ -8,7 +8,7 @@ import { AuthContext } from '@guildeducationinc/guild-auth';
 
 export const Navigation = () => {
   const authContext = React.useContext(AuthContext)
-  const role = authContext.user.role;
+  const role = (authContext.user || {}).role;
   return (
     <NavBar >
         <Brand href='/'>
@@ -22,7 +22,7 @@ export const Navigation = () => {
             const allowedRoles = getRoles(App)
             return (
               allowedRoles.indexOf(role) > -1 ?
-                <TabLink  Component={Link} key={label} to={route}>{ label }</TabLink>
+                <TabLink Component={Link} key={label} to={route}>{ label }</TabLink>
                 : null
             )
           }

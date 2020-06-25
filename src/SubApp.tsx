@@ -19,11 +19,11 @@ const SubApp = () => {
     )
   }
   if (!loading && hasAuthError) {
-    return <ErrorPage message={authError} />;
+    return <ErrorPage message={authError} goBack={ () => history.back() }/>;
   }
   return (<>
     {
-      apps.map(App => {
+      apps.map((App, idx) => {
         const roles = getRoles(App)
         if (roles.length === 0) {
           return (
@@ -32,7 +32,7 @@ const SubApp = () => {
           )
           } else {
             return (
-              <ProtectedComponent roles={roles} fallback={<ErrorPage message='Not found' />} loader={<Loading />}>
+              <ProtectedComponent key={idx} roles={roles} fallback={<ErrorPage message='Not found' goBack={() => history.back()}/>} loader={<Loading />}>
                 <App key={getRoute(App)} auth={authContext} />
               </ProtectedComponent>
             )
