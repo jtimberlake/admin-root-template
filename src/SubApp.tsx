@@ -25,14 +25,22 @@ const SubApp = () => {
     {
       apps.map(App => {
         const roles = getRoles(App)
-        return (
-          <ProtectedComponent roles={roles} fallback={<ErrorPage message='Not found' />} loader={<Loading />}>
+        if (roles.length === 0) {
+          return (
             <App key={getRoute(App)} auth={authContext} />
-          </ProtectedComponent>
-        )
+
+          )
+          } else {
+            return (
+              <ProtectedComponent roles={roles} fallback={<ErrorPage message='Not found' />} loader={<Loading />}>
+                <App key={getRoute(App)} auth={authContext} />
+              </ProtectedComponent>
+            )
+          }
       })
     }
-  </>)
+    </>
+  )
 }
 
 export default SubApp;
