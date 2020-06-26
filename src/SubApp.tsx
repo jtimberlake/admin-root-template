@@ -1,8 +1,8 @@
 import * as React from 'react';
 import apps from './apps.js';
 import {  getRoute } from '@guildeducationinc/guild-admin-utils';
-import { AuthContext } from '@guildeducationinc/guild-auth';
-import { ProtectedComponent, useAuthAndLogin } from '@guildeducationinc/guild-auth';
+import { AuthContext, useAuthAndLogin } from '@guildeducationinc/guild-auth';
+import { ProtectedComponent, } from '@guildeducationinc/guild-auth';
 import { Loading } from '@guildeducationinc/recess/components/Loading';
 import { getRoles } from '@guildeducationinc/guild-admin-utils';
 import { ErrorPage } from '@guildeducationinc/recess/components/ErrorPage';

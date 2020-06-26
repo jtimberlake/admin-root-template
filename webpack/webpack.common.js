@@ -10,7 +10,8 @@ module.exports = (env = 'development') => ({
     extensions: ['.jsx','.js', '.ts', '.tsx', '.css', '.scss'],
   },
   output: {
-    path: path.resolve(__dirname, '../public')
+    path: path.resolve(__dirname, '../public'),
+    filename: 'bundle.[hash:8].js'
   },
   resolve: {
     modules: ['src', 'node_modules'],
