@@ -21,7 +21,7 @@ export const Navigation = () => {
             const route = getRoute(App);
             const allowedRoles = getRoles(App)
             return (
-              allowedRoles.indexOf(role) > -1 ?
+              (allowedRoles.length === 0 || allowedRoles.indexOf(role) > -1) ?
                 <TabLink Component={Link} key={label} to={route}>{ label }</TabLink>
                 : null
             )
