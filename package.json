@@ -29,7 +29,7 @@
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
     "@guildeducationinc/guild-admin-utils": "^1.1.0",
-    "@guildeducationinc/guild-auth": "^1.0.60",
+    "@guildeducationinc/guild-auth": "^1.3.9",
     "@guildeducationinc/recess": "^5.4.5",
     "@hot-loader/react-dom": "^16.9.0",
     "apollo-boost": "^0.4.7",

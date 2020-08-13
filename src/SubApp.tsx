@@ -1,14 +1,13 @@
 import * as React from 'react';
 import apps from './apps.js';
 import {  getRoute } from '@guildeducationinc/guild-admin-utils';
-import { AuthContext, useAuthAndLogin } from '@guildeducationinc/guild-auth';
+import { useAuthAndLogin } from '@guildeducationinc/guild-auth';
 import { ProtectedComponent, } from '@guildeducationinc/guild-auth';
 import { Loading } from '@guildeducationinc/recess/components/Loading';
 import { getRoles } from '@guildeducationinc/guild-admin-utils';
 import { ErrorPage } from '@guildeducationinc/recess/components/ErrorPage';
 
 const SubApp = () => {
-  const authContext = React.useContext(AuthContext)
   const { loading, authError, hasAuthError } = useAuthAndLogin();
 
   if (loading) {
@@ -27,13 +26,13 @@ const SubApp = () => {
         const roles = getRoles(App)
         if (roles.length === 0) {
           return (
-            <App key={getRoute(App)} auth={authContext} />
+            <App key={getRoute(App)} />
 
           )
           } else {
             return (
               <ProtectedComponent key={idx} roles={roles} fallback={<ErrorPage message='Not found' goBack={() => history.back()}/>} loader={<Loading />}>
-                <App key={getRoute(App)} auth={authContext} />
+                <App key={getRoute(App)} />
               </ProtectedComponent>
             )
           }

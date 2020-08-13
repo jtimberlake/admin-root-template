@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import apps from '../apps.js';
 import { getLabel, getRoute, getRoles } from '@guildeducationinc/guild-admin-utils';
 import Button from '@guildeducationinc/recess/components/Button';
-import { AuthContext } from '@guildeducationinc/guild-auth';
+import { useAuth } from '@guildeducationinc/guild-auth';
 
 export const Navigation = () => {
-  const authContext = React.useContext(AuthContext)
+  const authContext = useAuth()
   const role = (authContext.user || {}).role;
   return (
     <NavBar >
@@ -22,7 +22,12 @@ export const Navigation = () => {
             const allowedRoles = getRoles(App)
             return (
               (allowedRoles.length === 0 || allowedRoles.indexOf(role) > -1) ?
-                <TabLink Component={Link} key={label} to={route}>{ label }</TabLink>
+                <TabLink 
+                  Component={Link}
+                  key={label}
+                  to={route}>
+                    { label }
+                  </TabLink>
                 : null
             )
           }
@@ -37,7 +42,7 @@ export const Navigation = () => {
           type: 'customLink',
           name: 'Sign out',
           Component: Button,
-          onClick: authContext.logout,
+          onClick: () => authContext.logout(),
           appearance: 'outline',
         },
       ]}
